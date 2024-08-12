@@ -59,132 +59,140 @@ class _homeScreenState extends State<homeScreen> {
           color: Color.fromRGBO(0, 0, 0, 0.9),
           child:  TabBarView(
             children: [
-             Padding(
-               padding: EdgeInsets.all(16.0),
-               child: Column(
-                
-                children: [
-                   SizedBox(height: 20,),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: noteslist.length, itemBuilder: (context, index) {
-                    return Card(
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Viewscreen(index: index,), )).then((value) => setState((){}));
-                      },
-                      leading: CircleAvatar(backgroundImage: FileImage(noteslist[index]['image']),),
-                      title: Text(noteslist[index]['title'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.9),fontSize: 20),),
-                    subtitle: Text(noteslist[index]['description'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.5),fontSize: 20),),
-                    trailing: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                noteslist[index]['bookmark']=!noteslist[index]['bookmark'];
+             SingleChildScrollView(
+               physics: ScrollPhysics(),
+               child: Padding(
+                 padding: EdgeInsets.all(16.0),
+                 child: Column(
+                  
+                  children: [
+                     SizedBox(height: 20,),
+                    ListView.builder(
+                      physics: ScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: noteslist.length, itemBuilder: (context, index) {
+                      return Card(
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Viewscreen(index: index,), )).then((value) => setState((){}));
+                        },
+                        leading: CircleAvatar(backgroundImage: FileImage(noteslist[index]['image']),),
+                        title: Text(noteslist[index]['title'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.9),fontSize: 20),),
+                      subtitle: Text(noteslist[index]['description'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.5),fontSize: 20),),
+                      trailing: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  noteslist[index]['bookmark']=!noteslist[index]['bookmark'];
+                                  setState(() {
+                                    
+                                  });
+                                },
+                                child: Icon(noteslist[index]['bookmark']?Icons.bookmark_outlined:Icons.bookmark_outline,)),
+                              SizedBox(width: 5,),
+                              GestureDetector(child: Icon(Icons.edit_calendar,color: Color.fromRGBO(0, 0, 0, 1),),
+                              
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => inputScreen(index: index,), )).then((value) => setState((){}));
+                              }),
+                              SizedBox(width: 5,),
+                              GestureDetector(child: Icon(Icons.delete,color: Color.fromRGBO(255, 0, 0, 1),),onTap: (){
+                                deletenotes(index);
                                 setState(() {
                                   
                                 });
-                              },
-                              child: Icon(noteslist[index]['bookmark']?Icons.bookmark_outlined:Icons.bookmark_outline,)),
-                            SizedBox(width: 5,),
-                            GestureDetector(child: Icon(Icons.edit_calendar,color: Color.fromRGBO(0, 0, 0, 1),),
-                            
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => inputScreen(index: index,), )).then((value) => setState((){}));
-                            }),
-                            SizedBox(width: 5,),
-                            GestureDetector(child: Icon(Icons.delete,color: Color.fromRGBO(255, 0, 0, 1),),onTap: (){
-                              deletenotes(index);
-                              setState(() {
-                                
-                              });
-                            },),
-                          ],
-                        ),
-                        Spacer(),
-                        Text(noteslist[index]['date'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1),fontSize: 7),),
-
-                      ],
-                    ),
+                              },),
+                            ],
+                          ),
+                          Spacer(),
+                          Text(noteslist[index]['date'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1),fontSize: 7),),
                
+                        ],
+                      ),
+                 
+                      ),
+                    );
+                    SizedBox(height: 20,);
+                   
+                    },
                     ),
-                  );
-                  SizedBox(height: 20,);
-                 
-                  },
-                  ),
-                  
-                 
-                ],
+                    
+                   
+                  ],
+                 ),
                ),
              ),
-             Padding(
-               padding: EdgeInsets.all(16.0),
-               child: Column(
-                
-                children: [
-                   SizedBox(height: 20,),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: imp_list.length, itemBuilder: (context, index) {
-                    return Card(
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Viewscreen(index: index,), )).then((value) => setState((){}));
-                      },
-                      leading: CircleAvatar(backgroundColor: Color.fromRGBO(104, 96, 96, 0.898),),
-                      title: Text(imp_list[index]['title'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.9),fontSize: 20),),
-                    subtitle: Text(imp_list[index]['description'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.5),fontSize: 20),),
-                    trailing: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                imp_list[index]['bookmark']=!noteslist[index]['bookmark'];
+             SingleChildScrollView(
+               physics: ScrollPhysics(),
+               child: Padding(
+                 padding: EdgeInsets.all(16.0),
+                 child: Column(
+                  
+                  children: [
+                     SizedBox(height: 20,),
+                    ListView.builder(
+                      physics: ScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: imp_list.length, itemBuilder: (context, index) {
+                      return Card(
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Viewscreen(index: index,), )).then((value) => setState((){}));
+                        },
+                        leading: CircleAvatar(backgroundColor: Color.fromRGBO(104, 96, 96, 0.898),),
+                        title: Text(imp_list[index]['title'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.9),fontSize: 20),),
+                      subtitle: Text(imp_list[index]['description'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 0.5),fontSize: 20),),
+                      trailing: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  imp_list[index]['bookmark']=!noteslist[index]['bookmark'];
+                                  setState(() {
+                                    
+                                  });
+                                },
+                                child: Icon(imp_list[index]['bookmark']?Icons.bookmark_outlined:Icons.bookmark_outline,)),
+                              SizedBox(width: 5,),
+                              GestureDetector(child: Icon(Icons.edit_calendar,color: Color.fromRGBO(0, 0, 0, 1),),
+                              
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => inputScreen(index: index,), )).then((value) => setState((){}));
+                              }),
+                              SizedBox(width: 5,),
+                              GestureDetector(child: Icon(Icons.delete,color: Color.fromRGBO(255, 0, 0, 1),),onTap: (){
+                                deletenotes(index);
                                 setState(() {
                                   
                                 });
-                              },
-                              child: Icon(imp_list[index]['bookmark']?Icons.bookmark_outlined:Icons.bookmark_outline,)),
-                            SizedBox(width: 5,),
-                            GestureDetector(child: Icon(Icons.edit_calendar,color: Color.fromRGBO(0, 0, 0, 1),),
-                            
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => inputScreen(index: index,), )).then((value) => setState((){}));
-                            }),
-                            SizedBox(width: 5,),
-                            GestureDetector(child: Icon(Icons.delete,color: Color.fromRGBO(255, 0, 0, 1),),onTap: (){
-                              deletenotes(index);
-                              setState(() {
-                                
-                              });
-                            },),
-                          ],
-                        ),
-                        Spacer(),
-                        Text(noteslist[index]['date'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1),fontSize: 7),),
-
-                      ],
-                    ),
+                              },),
+                            ],
+                          ),
+                          Spacer(),
+                          Text(noteslist[index]['date'],style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1),fontSize: 7),),
                
+                        ],
+                      ),
+                 
+                      ),
+                    );
+                    SizedBox(height: 20,);
+                   
+                    },
                     ),
-                  );
-                  SizedBox(height: 20,);
-                 
-                  },
-                  ),
-                  
-                 
-                ],
+                    
+                   
+                  ],
+                 ),
                ),
              ),
               
@@ -207,3 +215,4 @@ class _homeScreenState extends State<homeScreen> {
     );
   }
 }
+
