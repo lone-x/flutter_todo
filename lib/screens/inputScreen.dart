@@ -105,7 +105,7 @@ class _inputScreenState extends State<inputScreen> {
                            addnotes(title: title.text, description: descripton.text, date:DateTime.now().toString(), bookmark: false, image: pickedImage!);
                       }
                       else{
-                        editnodes(widget.index, title: title.text, description: descripton.text, date:DateTime.now().toString(), bookmark: false, image: pickedImage!);
+                        editnodes(widget.index, title: title.text, description: descripton.text, date:DateTime.now().toString(), bookmark: noteslist[widget.index]['bookmark'], image: pickedImage!);
                       }
                    
                       Navigator.pop(context);

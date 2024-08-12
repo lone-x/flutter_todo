@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/controller/notescontroller.dart';
+import 'package:todo/screens/inputScreen.dart';
 
 class Viewscreen extends StatefulWidget {
 Viewscreen({super.key,required this.index});
@@ -19,7 +20,12 @@ class _ViewscreenState extends State<Viewscreen> {
 
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>inputScreen(index: widget.index))).then((value)=>setState(() {
+                
+              }));
+             
+            },
             icon: Icon(Icons.edit_calendar),
           ),
           IconButton(
